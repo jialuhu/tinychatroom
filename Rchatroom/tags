@@ -1,0 +1,27 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+LISTENQ	serve1.c	10;"	d	file:
+apply_addfriend	serve1.c	/^void apply_addfriend(int conn_fd,struct chat *temp)\/\/处理申请加好友$/;"	f
+ch	serve1.c	/^char *ch="bsc";$/;"	v
+connect	serve1.c	/^struct connect$/;"	s	file:
+connect_id	serve1.c	/^   int connect_id;$/;"	m	struct:connect	file:
+connect_userid	serve1.c	/^   char connect_userid[16];$/;"	m	struct:connect	file:
+dosome	serve1.c	/^void *dosome(void *arg)$/;"	f
+friend	serve1.c	/^char friend[200][200]={0};$/;"	v
+insert	serve1.c	/^struct connect *insert(struct connect *phead,struct chat *temp,int conn_fd)$/;"	f
+main	serve1.c	/^int main(int argc,char **argv)$/;"	f
+mysql	serve1.c	/^MYSQL *mysql;$/;"	v
+next	serve1.c	/^   struct connect *next;$/;"	m	struct:connect	typeref:struct:connect::connect	file:
+online_prin	serve1.c	/^struct connect *online_prin(struct connect *phead,char *id)\/\/退出删除节点$/;"	f
+p	serve1.c	/^struct connect *p;$/;"	v	typeref:struct:connect
+phead	serve1.c	/^struct connect *phead;$/;"	v	typeref:struct:connect
+prin	serve1.c	/^int prin(struct connect *phead,char *id)\/\/查找在线节点conn_fd;$/;"	f
+q	serve1.c	/^struct connect *q;$/;"	v	typeref:struct:connect
+r	serve1.c	/^struct connect *r;$/;"	v	typeref:struct:connect
+send_friend	serve1.c	/^void send_friend(int conn_fd,struct chat *temp)\/\/处理私聊信息$/;"	f
+tblock	serve1.c	/^struct tm *tblock;$/;"	v	typeref:struct:tm
+timer	serve1.c	/^time_t timer;$/;"	v
