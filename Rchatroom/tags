@@ -4,24 +4,40 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-LISTENQ	serve1.c	10;"	d	file:
-apply_addfriend	serve1.c	/^void apply_addfriend(int conn_fd,struct chat *temp)\/\/处理申请加好友$/;"	f
-ch	serve1.c	/^char *ch="bsc";$/;"	v
-connect	serve1.c	/^struct connect$/;"	s	file:
-connect_id	serve1.c	/^   int connect_id;$/;"	m	struct:connect	file:
-connect_userid	serve1.c	/^   char connect_userid[16];$/;"	m	struct:connect	file:
-dosome	serve1.c	/^void *dosome(void *arg)$/;"	f
-friend	serve1.c	/^char friend[200][200]={0};$/;"	v
-insert	serve1.c	/^struct connect *insert(struct connect *phead,struct chat *temp,int conn_fd)$/;"	f
-main	serve1.c	/^int main(int argc,char **argv)$/;"	f
-mysql	serve1.c	/^MYSQL *mysql;$/;"	v
-next	serve1.c	/^   struct connect *next;$/;"	m	struct:connect	typeref:struct:connect::connect	file:
-online_prin	serve1.c	/^struct connect *online_prin(struct connect *phead,char *id)\/\/退出删除节点$/;"	f
-p	serve1.c	/^struct connect *p;$/;"	v	typeref:struct:connect
-phead	serve1.c	/^struct connect *phead;$/;"	v	typeref:struct:connect
-prin	serve1.c	/^int prin(struct connect *phead,char *id)\/\/查找在线节点conn_fd;$/;"	f
-q	serve1.c	/^struct connect *q;$/;"	v	typeref:struct:connect
-r	serve1.c	/^struct connect *r;$/;"	v	typeref:struct:connect
-send_friend	serve1.c	/^void send_friend(int conn_fd,struct chat *temp)\/\/处理私聊信息$/;"	f
-tblock	serve1.c	/^struct tm *tblock;$/;"	v	typeref:struct:tm
-timer	serve1.c	/^time_t timer;$/;"	v
+DB_NAME	client.c	14;"	d	file:
+HOST	client.c	11;"	d	file:
+PASSWD	client.c	13;"	d	file:
+USER	client.c	12;"	d	file:
+add_masg	client.c	/^struct m *add_masg(struct m *phead,struct chat *temp)\/\/链表增加验证消息$/;"	f
+addfriend	client.c	/^void addfriend(int con_fd,struct chat *temp)\/\/加好友$/;"	f
+circle_chat	client.c	/^void circle_chat(int con_fd,struct chat *temp)$/;"	f
+circle_manage	client.c	/^void circle_manage(int con_fd,struct chat *temp)$/;"	f
+cmd	client.c	/^void *cmd(void *arg)$/;"	f
+create_sock	client.c	/^int create_sock()$/;"	f
+delete_masg	client.c	/^struct m *delete_masg(struct m *phead,char *id)\/\/链表删除已经处理过的消息$/;"	f
+friend	client.c	/^void friend()$/;"	f
+friendmanage	client.c	/^void friendmanage(int con_fd,struct chat *temp)\/\/好友管理$/;"	f
+id	client.c	/^    char id[16];$/;"	m	struct:m	file:
+leg_insert	client.c	/^void leg_insert()\/\/注册界面$/;"	f
+login_inset	client.c	/^void login_inset()\/\/登陆界面$/;"	f
+look_information	client.c	/^void look_information(int con_fd,struct chat *temp)$/;"	f
+m	client.c	/^struct m{$/;"	s	file:
+m_connect	client.c	/^void m_connect(int sock_fd,struct sockaddr_in *ser)$/;"	f
+m_write	client.c	/^void  m_write(int sock_fd,struct chat *temp)$/;"	f
+main	client.c	/^int main()$/;"	f
+maininsert	client.c	/^void maininsert()\/\/主界面菜单$/;"	f
+masg	client.c	/^    char masg[200];$/;"	m	struct:m	file:
+my_err	client.c	/^void my_err(const char *err_string,int line)$/;"	f
+next	client.c	/^    struct m *next;$/;"	m	struct:m	typeref:struct:m::m	file:
+p	client.c	/^struct m *p;$/;"	v	typeref:struct:m
+personchat	client.c	/^void personchat(struct chat *temp,int con_fd)\/\/进入私聊界面$/;"	f
+phead	client.c	/^struct m *phead;$/;"	v	typeref:struct:m
+quit	client.c	/^char quit[4]="quit";$/;"	v
+r	client.c	/^struct m *r;$/;"	v	typeref:struct:m
+send_file	client.c	/^int send_file(int con_fd,struct chat *temp)$/;"	f
+tblock	client.c	/^struct tm *tblock;$/;"	v	typeref:struct:tm
+timer	client.c	/^time_t timer;$/;"	v
+user_insert	client.c	/^void user_insert()$/;"	f
+user_log	client.c	/^int user_log(struct chat *temp,int con_fd)  \/\/注册函数$/;"	f
+user_login	client.c	/^int user_login(struct chat *temp,int conn_fd)\/\/客户端发送id和密码给服务端$/;"	f
+y	client.c	/^char y[3]="yes";$/;"	v

@@ -31,8 +31,8 @@ MYSQL *res;
 MYSQL *row;
 int t = mysql_real_query(mysql,query,strlen(query));
 if(t){
-    printf("Falied to query:%s\n",mysql_error(mysql));
-    return -1;
+printf("Falied to query:%s\n",mysql_error(mysql));
+return -1;
 }
 printf("query44:%s\n",query);
 printf("successful of change the status\n");
@@ -44,7 +44,7 @@ printf("mysql\n");
 mysql = mysql_init(NULL);
 if(!mysql)
 {
-    printf("wucuo\n");
+printf("wucuo\n");
 }
 printf("successe\n");
 return mysql;
@@ -55,12 +55,12 @@ MYSQL *mysql_connect(MYSQL *mysql)//数据库的连接
 printf("mysql connetc\n");
 if(!mysql_real_connect(mysql, HOST, USER, NULL, DB_NAME, 0, NULL, 0))
 {
-    printf("Failed to connect with mysql:%s\n",mysql_error(mysql));
+printf("Failed to connect with mysql:%s\n",mysql_error(mysql));
 }
 printf("connect is successful!\n");
 if(!mysql_set_character_set(mysql,"utf8"))
 {
-    printf("new client charact set :%s\n",mysql_character_set_name(mysql));
+printf("new client charact set :%s\n",mysql_character_set_name(mysql));
 }
 return mysql;
 }
@@ -81,64 +81,64 @@ sprintf(query,"%s passwd='%s' and id='%s';",command,temp->user_passwd,temp->user
 printf("query:%s\n",query);
 int t = mysql_real_query(mysql,query,strlen(query));
 if(t){
-    printf("Falied to query:%s\n",mysql_error(mysql));
+printf("Falied to query:%s\n",mysql_error(mysql));
 }
 res = mysql_store_result(mysql);
 printf("\n");
 int flag=0;
 while((row=mysql_fetch_row(res)))
 {
-    for(t=0;t<mysql_num_fields(res);t++)
+for(t=0;t<mysql_num_fields(res);t++)
+{
+    if(t==0)
     {
-        if(t==0)
-        {
-            strcpy(name,(char *)row[t]);
-            name[strlen((char *)row[t])+1]='\0';
-            printf("name:%s\n",name);
-            continue;
-        }
-        if(t==1)
-        {
-            strcpy(id,(char *)row[t]);
-            printf("id:%s\n",id);
-            continue;
-        }
-        if(t==2)
-        {
-            strcpy(pasd,(char *)row[t]);
-            printf("pasd:%s\n",pasd);
-            continue;
-        }
-        if(t==3)//已经登陆
-        {
-            char st[2];
-            st[0]='1';
-            st[1]='\0';
-            if(!strcmp(st,(char *)row[t]))
-            {
-                flag = 0;//该用户在线
-                return 0;
-            }
-            printf("status:%s\n",(char *)row[t]);
-        }
+        strcpy(name,(char *)row[t]);
+        name[strlen((char *)row[t])+1]='\0';
+        printf("name:%s\n",name);
+        continue;
     }
-    printf("\n");
+    if(t==1)
+    {
+        strcpy(id,(char *)row[t]);
+        printf("id:%s\n",id);
+        continue;
+    }
+    if(t==2)
+    {
+        strcpy(pasd,(char *)row[t]);
+        printf("pasd:%s\n",pasd);
+        continue;
+    }
+    if(t==3)//已经登陆
+    {
+        char st[2];
+        st[0]='1';
+        st[1]='\0';
+        if(!strcmp(st,(char *)row[t]))
+        {
+            flag = 0;//该用户在线
+            return 0;
+        }
+        printf("status:%s\n",(char *)row[t]);
+    }
+}
+printf("\n");
 }
 if((strcmp(temp->user_id,id))!=0)
 {
-    printf("tid:%s\tid:%s\n",temp->user_id,id);
-    return -1;//账号错误
-   }
+printf("tid:%s\tid:%s\n",temp->user_id,id);
+return -1;//账号错误
+}
 if((strcmp(temp->user_passwd,pasd))!=0)
 {
-    return -2;//密码不匹配
+return -2;//密码不匹配
 }
 else
 {
-    strcpy(temp->user_name,name);
-    //temp->back=1;
-    printf("t_name:%s",temp->user_name);
-    return 1;//登陆成功
+strcpy(temp->user_name,name);
+//temp->back=1;
+printf("t_name:%s",temp->user_name);
+return 1;//登陆成功
 }
 mysql_free_result(res);
 }
@@ -160,8 +160,8 @@ printf("query2:%s\n",query);
 int t = mysql_real_query(mysql, query, strlen(query));
 if(t)
 {
-    printf("Falied to query:%s\n",mysql_error(mysql));
-    return 0;
+printf("Falied to query:%s\n",mysql_error(mysql));
+return 0;
 }
 printf("successful of create the user_table\n");
 return mysql;
@@ -169,318 +169,318 @@ return mysql;
 
 int create_circles(MYSQL *mysql,struct chat *temp)
 {
-    MYSQL *res;
-    MYSQL *row;
-    char query[200]={0};
-    sprintf(query,"CREATE TABLE IF NOT EXISTS %s (name char(20) NOT NULL, id char(16) NULL,masg char(200) NULL,type char(200) NULL)ENGINE=InnoDB DEFAULT CHARSET=utf8;",temp->to_id);
-    printf("create_circle_query:%s\n",query);
-    int t = mysql_real_query(mysql, query, strlen(query));
-    if(t)
-    {
-        printf("Falied to create_circle_query:%s\n",mysql_error(mysql));
-        return 0;
-    }
-    return 1;
+MYSQL *res;
+MYSQL *row;
+char query[200]={0};
+sprintf(query,"CREATE TABLE IF NOT EXISTS %s (name char(20) NOT NULL, id char(16) NULL,masg char(200) NULL,type char(200) NULL)ENGINE=InnoDB DEFAULT CHARSET=utf8;",temp->to_id);
+printf("create_circle_query:%s\n",query);
+int t = mysql_real_query(mysql, query, strlen(query));
+if(t)
+{
+    printf("Falied to create_circle_query:%s\n",mysql_error(mysql));
+    return 0;
+}
+return 1;
 }
 int outto_circle(MYSQL *mysql,struct chat *temp)
 {
-    MYSQL *res;
-    MYSQL *row;
-    char query[200]={0};
-    sprintf(query,"delete from circle where user_id='%s' and circle_id='%s';",temp->user_id,temp->to_id);
-    printf("delete_circle_query:%s\n",query);
-    int t = mysql_real_query(mysql, query, strlen(query));
-    if(t)
-    {
-        printf("Falied to create_circle_query:%s\n",mysql_error(mysql));
-        return 0;
-    }
-    return 1;
+MYSQL *res;
+MYSQL *row;
+char query[200]={0};
+sprintf(query,"delete from circle where user_id='%s' and circle_id='%s';",temp->user_id,temp->to_id);
+printf("delete_circle_query:%s\n",query);
+int t = mysql_real_query(mysql, query, strlen(query));
+if(t)
+{
+    printf("Falied to create_circle_query:%s\n",mysql_error(mysql));
+    return 0;
+}
+return 1;
 }
 
 int insert_circledata(MYSQL *mysql,struct chat *temp)
 {
-    MYSQL *res;
-    MYSQL *row;
-    char query[300]={0};
-    char st[2]={0};
-    st[0] = temp->status[2];
-    st[1] = '\0';
-    sprintf(query,"INSERT INTO circle (user_id,circle_id,circle_name,type)VALUES('%s','%s','%s','%s');",temp->user_id,temp->to_id,temp->masg,st);
-    printf("inser_circle_query:%s\n",query);
-    int t = mysql_real_query(mysql, query, strlen(query));
-    if(t)
-    {
-        printf("Falied to intsert_circledata_query:%s\n",mysql_error(mysql));
-        return 0;
-    }
-    return 1;
+MYSQL *res;
+MYSQL *row;
+char query[300]={0};
+char st[2]={0};
+st[0] = temp->status[2];
+st[1] = '\0';
+sprintf(query,"INSERT INTO circle (user_id,circle_id,circle_name,type)VALUES('%s','%s','%s','%s');",temp->user_id,temp->to_id,temp->masg,st);
+printf("inser_circle_query:%s\n",query);
+int t = mysql_real_query(mysql, query, strlen(query));
+if(t)
+{
+    printf("Falied to intsert_circledata_query:%s\n",mysql_error(mysql));
+    return 0;
+}
+return 1;
 }
 
 int look_circles(MYSQL *mysql,struct chat *temp,int con_fd)
 {
-    MYSQL_RES *res;
-    MYSQL_ROW *row;
-    char query[200]={0};
-    sprintf(query,"select circle_name,circle_id from circle where user_id='%s';",temp->user_id);
-    printf("look_circles_query:%s\n",query);
-    int t = mysql_real_query(mysql,query,strlen(query));
-    if(t){
-        printf("Falied to query:%s\n",mysql_error(mysql));
-    }
-    res=mysql_store_result(mysql);
-    printf("\n");
-    int b=0; 
-    while((row=mysql_fetch_row(res)))
+MYSQL_RES *res;
+MYSQL_ROW *row;
+char query[200]={0};
+sprintf(query,"select circle_name,circle_id from circle where user_id='%s';",temp->user_id);
+printf("look_circles_query:%s\n",query);
+int t = mysql_real_query(mysql,query,strlen(query));
+if(t){
+    printf("Falied to query:%s\n",mysql_error(mysql));
+}
+res=mysql_store_result(mysql);
+printf("\n");
+int b=0; 
+while((row=mysql_fetch_row(res)))
+{
+    b++;
+    for(t=0;t<mysql_num_fields(res);t++)
     {
-        b++;
-        for(t=0;t<mysql_num_fields(res);t++)
+        if(t==0)
         {
-            if(t==0)
-            {
-                strcpy(temp->user_name,(char *)row[t]);
-            }
-            if(t==1)
-            {
-                strcpy(temp->to_id,(char *)row[t]);
-            }
+            strcpy(temp->user_name,(char *)row[t]);
         }
-        temp->back = 1;
-        write(con_fd,temp,sizeof(struct chat));
+        if(t==1)
+        {
+            strcpy(temp->to_id,(char *)row[t]);
+        }
     }
-    if(b==0)
-    {
-        temp->back = -1;
-        write(con_fd,temp,sizeof(struct chat));
-        //return 0;
-    }
+    temp->back = 1;
+    write(con_fd,temp,sizeof(struct chat));
+}
+if(b==0)
+{
+    temp->back = -1;
+    write(con_fd,temp,sizeof(struct chat));
+    //return 0;
+}
 }
 
 int host_circle(MYSQL *mysql,struct chat *temp)
 {
-    MYSQL_RES *res;
-    MYSQL_ROW *row;
-    char query[200]={0};
-    char id[16]={0};
-    sprintf(query,"select user_id from circle where type='h' and circle_id='%s';",temp->to_id);
-    printf("host_circle_query:%s\n",query);
-    int t = mysql_real_query(mysql,query,strlen(query));
-    if(t){
-        printf("Falied to query:%s\n",mysql_error(mysql));
-    }
-    res=mysql_store_result(mysql);
-    printf("\n");
-    int b=0; 
-    while((row=mysql_fetch_row(res)))
+MYSQL_RES *res;
+MYSQL_ROW *row;
+char query[200]={0};
+char id[16]={0};
+sprintf(query,"select user_id from circle where type='h' and circle_id='%s';",temp->to_id);
+printf("host_circle_query:%s\n",query);
+int t = mysql_real_query(mysql,query,strlen(query));
+if(t){
+    printf("Falied to query:%s\n",mysql_error(mysql));
+}
+res=mysql_store_result(mysql);
+printf("\n");
+int b=0; 
+while((row=mysql_fetch_row(res)))
+{
+    b++;
+    for(t=0;t<mysql_num_fields(res);t++)
     {
-        b++;
-        for(t=0;t<mysql_num_fields(res);t++)
-        {
-            strcpy(id,(char *)row[t]);
-        }
+        strcpy(id,(char *)row[t]);
     }
-    if(b==0)
+}
+if(b==0)
+{
+    return 0;
+}
+else
+{
+    if(strcmp(id,temp->user_id)==0)
     {
-        return 0;
+        return 1;
     }
     else
     {
-        if(strcmp(id,temp->user_id)==0)
-        {
-            return 1;
-        }
-        else
-        {
-            return -1;
-        }
+        return -1;
     }
+}
 
 }
 int close_circles(MYSQL *mysql,struct chat *temp)//解散群
 {
-    MYSQL *res;
-    MYSQL *row;
-    char query[200]={0};
-    sprintf(query,"delete from circle where circle_id='%s';",temp->to_id);
-    printf("close_circles_ query:%s\n",query);
-    int t = mysql_real_query(mysql, query, strlen(query));
-    if(t)
-    {
-        printf("Falied to intsert_circledata_query:%s\n",mysql_error(mysql));
-        return 0;
-    }
-    return 1;
+MYSQL *res;
+MYSQL *row;
+char query[200]={0};
+sprintf(query,"delete from circle where circle_id='%s';",temp->to_id);
+printf("close_circles_ query:%s\n",query);
+int t = mysql_real_query(mysql, query, strlen(query));
+if(t)
+{
+    printf("Falied to intsert_circledata_query:%s\n",mysql_error(mysql));
+    return 0;
+}
+return 1;
 }
 int check_addcircle(MYSQL *mysql,struct chat *temp)//检查是否有该群
 {
-    MYSQL_RES *res;
-    MYSQL_ROW *row;
-    char query[200]={0};
-    sprintf(query,"select circle_name from circle where circle_id='%s';",temp->to_id);
-    printf("check_online query:%s\n",query);
-    int t = mysql_real_query(mysql,query,strlen(query));
-    if(t){
-        printf("Falied to query:%s\n",mysql_error(mysql));
-    }
-    res=mysql_store_result(mysql);
-    printf("\n");
-    int b=0; 
-    while((row=mysql_fetch_row(res)))
+MYSQL_RES *res;
+MYSQL_ROW *row;
+char query[200]={0};
+sprintf(query,"select circle_name from circle where circle_id='%s';",temp->to_id);
+printf("check_online query:%s\n",query);
+int t = mysql_real_query(mysql,query,strlen(query));
+if(t){
+    printf("Falied to query:%s\n",mysql_error(mysql));
+}
+res=mysql_store_result(mysql);
+printf("\n");
+int b=0; 
+while((row=mysql_fetch_row(res)))
+{
+    for(t=0;t<mysql_num_fields(res);t++)
     {
-        for(t=0;t<mysql_num_fields(res);t++)
-        {
-            strcpy(temp->masg,(char *)row[0]);
-            printf("\t\t\t\tname for circle:%s\n\t\t\t",temp->masg);
-            b++;
-        }
-        //b++;
+        strcpy(temp->masg,(char *)row[0]);
+        printf("\t\t\t\tname for circle:%s\n\t\t\t",temp->masg);
+        b++;
     }
-    if(b==0)
-    {
-        return 0;
-    }
-    if(b>0)
-    {
-        return 1;
-    }
+    //b++;
+}
+if(b==0)
+{
+    return 0;
+}
+if(b>0)
+{
+    return 1;
+}
 }
 
 int check_personcircle(MYSQL *mysql,struct chat *temp)//检查是否有重复加群
 {
-    MYSQL_RES *res;
-    MYSQL_ROW *row;
-    char query[200]={0};
-    sprintf(query,"select user_id from circle where circle_id='%s' and user_id='%s';",temp->to_id,temp->user_id);
-    printf("check_online query:%s\n",query);
-    int t = mysql_real_query(mysql,query,strlen(query));
-    if(t){
-        printf("Falied to query:%s\n",mysql_error(mysql));
-    }
-    res=mysql_store_result(mysql);
-    printf("\n");
-    int b=0; 
-    while((row=mysql_fetch_row(res)))
+MYSQL_RES *res;
+MYSQL_ROW *row;
+char query[200]={0};
+sprintf(query,"select user_id from circle where circle_id='%s' and user_id='%s';",temp->to_id,temp->user_id);
+printf("check_online query:%s\n",query);
+int t = mysql_real_query(mysql,query,strlen(query));
+if(t){
+    printf("Falied to query:%s\n",mysql_error(mysql));
+}
+res=mysql_store_result(mysql);
+printf("\n");
+int b=0; 
+while((row=mysql_fetch_row(res)))
+{
+    for(t=0;t<mysql_num_fields(res);t++)
     {
-        for(t=0;t<mysql_num_fields(res);t++)
-        {
-            b++;
-        }
-        //b++;
+        b++;
     }
-    if(b==0)
-    {
-        return 1;
-    }
-    if(b>0)
-    {
-        return 0;
-    }
+    //b++;
+}
+if(b==0)
+{
+    return 1;
+}
+if(b>0)
+{
+    return 0;
+}
 }
 int allchat(MYSQL *mysql,struct chat *temp,int con_fd,struct connect *phead)
 {
-    MYSQL_RES *res;
-    MYSQL_ROW *row;
-    char query[200]={0};
-    int conn;
-    char id[16]={0};
-    sprintf(query,"select id from chatuser where sockt='1' and id IN(select user_id from circle where circle_id='%s');",temp->to_id);
-    printf("allchat_query:%s\n",query);
-    int t = mysql_real_query(mysql,query,strlen(query));
-    if(t){
-        printf("Falied to query:%s\n",mysql_error(mysql));
-    }
-    res=mysql_store_result(mysql);
-    printf("\n");
-    int b=0;
-    while((row=mysql_fetch_row(res)))
+MYSQL_RES *res;
+MYSQL_ROW *row;
+char query[200]={0};
+int conn;
+char id[16]={0};
+sprintf(query,"select id from chatuser where sockt='1' and id IN(select user_id from circle where circle_id='%s');",temp->to_id);
+printf("allchat_query:%s\n",query);
+int t = mysql_real_query(mysql,query,strlen(query));
+if(t){
+    printf("Falied to query:%s\n",mysql_error(mysql));
+}
+res=mysql_store_result(mysql);
+printf("\n");
+int b=0;
+while((row=mysql_fetch_row(res)))
+{
+    b++;
+    for(t=0;t<mysql_num_fields(res);t++)
     {
-        b++;
-        for(t=0;t<mysql_num_fields(res);t++)
+        strcpy(id,(char *)row[t]);
+        if(strcmp(temp->user_id,id)!=0)
         {
-            strcpy(id,(char *)row[t]);
-            if(strcmp(temp->user_id,id)!=0)
-            {
-                conn = prin(phead,id);
-                temp->command = all_chat;
-                temp->back = 1;
-                write(conn,temp,sizeof(struct chat));
-                printf("\n\t\t\t\txiaxi:%s\n",temp->masg);
-            }
+            conn = prin(phead,id);
+            temp->command = all_chat;
+            temp->back = 1;
+            write(conn,temp,sizeof(struct chat));
+            printf("\n\t\t\t\txiaxi:%s\n",temp->masg);
         }
     }
-    //if(b>0)
-   // {
-        send_allchat(mysql,temp);
-   // }
-    if(b==0)
-    {
-        temp->command = all_chat;
-        temp->back = -1;
-        write(con_fd,temp,sizeof(struct chat));
-    }
+}
+//if(b>0)
+// {
+    send_allchat(mysql,temp);
+// }
+if(b==0)
+{
+    temp->command = all_chat;
+    temp->back = -1;
+    write(con_fd,temp,sizeof(struct chat));
+}
 }
 int look_allchat_history(MYSQL *mysql,struct chat *temp,int con_fd)//查看群聊天记录
 {
-    MYSQL_RES *res;
-    MYSQL_ROW *row;
-    char query[200]={0};
-    char masg[200]={0};
-    sprintf(query,"select name,masg,type from %s;",temp->to_id);
-    printf("look_allchat_history_query:%s\n",query);
-    int t = mysql_real_query(mysql,query,strlen(query));
-    if(t){
-        printf("Falied to query:%s\n",mysql_error(mysql));
-    }
-    res=mysql_store_result(mysql);
-    printf("\n");
-    int b=0;
-    while((row=mysql_fetch_row(res)))
+MYSQL_RES *res;
+MYSQL_ROW *row;
+char query[200]={0};
+char masg[200]={0};
+sprintf(query,"select name,masg,type from %s;",temp->to_id);
+printf("look_allchat_history_query:%s\n",query);
+int t = mysql_real_query(mysql,query,strlen(query));
+if(t){
+    printf("Falied to query:%s\n",mysql_error(mysql));
+}
+res=mysql_store_result(mysql);
+printf("\n");
+int b=0;
+while((row=mysql_fetch_row(res)))
+{
+    b++;
+    for(t=0;t<mysql_num_fields(res);t++)
     {
-        b++;
-        for(t=0;t<mysql_num_fields(res);t++)
+        if(t==0)
         {
-            if(t==0)
-            {
-                strcpy(temp->user_name,(char *)row[t]);
-            }
-            if(t==1)
-            {
-                strcpy(masg,(char *)row[t]);
-            }
-            if(t==2)
-            {
-                sprintf(temp->masg,"%s time:%s",masg,(char *)row[t]);
-            }
+            strcpy(temp->user_name,(char *)row[t]);
         }
-        temp->command = look_circle_history;
-        temp->back = 1;
-        write(con_fd,temp,sizeof(struct chat));
+        if(t==1)
+        {
+            strcpy(masg,(char *)row[t]);
+        }
+        if(t==2)
+        {
+            sprintf(temp->masg,"%s time:%s",masg,(char *)row[t]);
+        }
     }
-    if(b==0)
-    {
-        temp->command = look_circle_history;
-        temp->back = -1;
-        write(con_fd,temp,sizeof(struct chat));
-    }
+    temp->command = look_circle_history;
+    temp->back = 1;
+    write(con_fd,temp,sizeof(struct chat));
+}
+if(b==0)
+{
+    temp->command = look_circle_history;
+    temp->back = -1;
+    write(con_fd,temp,sizeof(struct chat));
+}
 }
 int send_allchat(MYSQL *mysql,struct chat *temp)
 {
-    time_t timer;
-    struct tm *tblock;
-    timer = time(NULL);
-    tblock = localtime(&timer);
-    MYSQL *res;
-    MYSQL *row;
-    char query[200]={0};
-    sprintf(query,"INSERT INTO %s (name,id,masg,type)VALUES('%s','%s','%s','%s');",temp->to_id,temp->user_name,temp->user_id,temp->masg,asctime(tblock));
-    printf("send_allchat_query:%s\n",query);
-    int t = mysql_real_query(mysql, query, strlen(query));
-    if(t)
-    {
-        printf("Falied to query:%s\n",mysql_error(mysql));
-        return 0;
-    }
-    return 1;
+time_t timer;
+struct tm *tblock;
+timer = time(NULL);
+tblock = localtime(&timer);
+MYSQL *res;
+MYSQL *row;
+char query[200]={0};
+sprintf(query,"INSERT INTO %s (name,id,masg,type)VALUES('%s','%s','%s','%s');",temp->to_id,temp->user_name,temp->user_id,temp->masg,asctime(tblock));
+printf("send_allchat_query:%s\n",query);
+int t = mysql_real_query(mysql, query, strlen(query));
+if(t)
+{
+    printf("Falied to query:%s\n",mysql_error(mysql));
+    return 0;
+}
+return 1;
 }
 
 MYSQL *insert_data(MYSQL *mysql,struct chat *temp)//向用户表中插入数据
@@ -498,8 +498,8 @@ printf("query:%s\n",query);
 int t = mysql_real_query(mysql, query, strlen(query));
 if(t)
 {
-    printf("Falied to query:%s\n",mysql_error(mysql));
-    return 0;
+printf("Falied to query:%s\n",mysql_error(mysql));
+return 0;
 }
 printf("successful\n");
 return mysql;
@@ -518,18 +518,18 @@ sprintf(query,"select *from chatuser where id='%s';",id);
 printf("check_online query:%s\n",query);
 int t = mysql_real_query(mysql,query,strlen(query));
 if(t){
-    printf("Falied to query:%s\n",mysql_error(mysql));
+printf("Falied to query:%s\n",mysql_error(mysql));
 }
 res=mysql_store_result(mysql);
 row=mysql_fetch_row(res);
 if(row==NULL)
 {
-    printf("myouhaoyou\n");
-    temp->back=-1;
+printf("myouhaoyou\n");
+temp->back=-1;
 }
 if((res!=NULL)&&(row!=NULL))
 {
-    find_online(mysql,temp);//判断是否在线
+find_online(mysql,temp);//判断是否在线
 }
 }
 
@@ -545,17 +545,17 @@ sprintf(query,"select *from chatuser where id='%s' and sockt='1';",id);
 printf("check_online query:%s\n",query);
 int t = mysql_real_query(mysql,query,strlen(query));
 if(t){
-    printf("Falied to query:%s\n",mysql_error(mysql));
+printf("Falied to query:%s\n",mysql_error(mysql));
 }
 res=mysql_store_result(mysql);
 row=mysql_fetch_row(res);
 if(row==NULL)
 {
-    temp->back=-2;//不在线
+temp->back=-2;//不在线
 }
 if((res!=NULL)&&(row!=NULL))
 {
-    temp->back=1;//在线
+temp->back=1;//在线
 }   
 }
 
@@ -571,7 +571,7 @@ sprintf(query,"INSERT INTO imformation(s_name, s_id, to_id, masg, type)VALUES('%
 printf("insert_imformation query:%s\n",query);
 int t = mysql_real_query(mysql,query,strlen(query));
 if(t){
-    printf("Falied to query:%s\n",mysql_error(mysql));
+printf("Falied to query:%s\n",mysql_error(mysql));
 }
 }
 
@@ -588,40 +588,40 @@ sprintf(query,"select s_id,s_name,masg from imformation where to_id='%s' and typ
 printf("get_imformation query:%s\n",query);
 int t = mysql_real_query(mysql,query,strlen(query));
 if(t){
-    printf("Falied to query:%s\n",mysql_error(mysql));
+printf("Falied to query:%s\n",mysql_error(mysql));
 }
 res=mysql_store_result(mysql);
 printf("\n");
 int b=0; 
 while((row=mysql_fetch_row(res)))
 {
-    b++;
-    temp->back = 1;
-    memset(temp->to_id,0,16);
-    memset(temp->masg,0,200);
-    memset(temp->user_name,0,16);
-    for(t=0;t<mysql_num_fields(res);t++)
-    {
-        if(t==0){
-            strcpy(temp->to_id,(char *)row[t]);
-        }
-        if(t==1)
-        {
-            strcpy(temp->user_name,(char *)row[t]);
-        }
-        if(t==2)
-        {
-            strcpy(temp->masg,(char *)row[t]);
-        }
+b++;
+temp->back = 1;
+memset(temp->to_id,0,16);
+memset(temp->masg,0,200);
+memset(temp->user_name,0,16);
+for(t=0;t<mysql_num_fields(res);t++)
+{
+    if(t==0){
+        strcpy(temp->to_id,(char *)row[t]);
     }
-    write(con_fd,temp,sizeof(struct chat));
-    printf("%s %s %s\n",temp->to_id,temp->user_name,temp->masg);
-    printf("\n");
+    if(t==1)
+    {
+        strcpy(temp->user_name,(char *)row[t]);
+    }
+    if(t==2)
+    {
+        strcpy(temp->masg,(char *)row[t]);
+    }
+}
+write(con_fd,temp,sizeof(struct chat));
+printf("%s %s %s\n",temp->to_id,temp->user_name,temp->masg);
+printf("\n");
 }
 if(b==0)
 {
-    temp->back = -1;
-    write(con_fd,temp,sizeof(struct chat));
+temp->back = -1;
+write(con_fd,temp,sizeof(struct chat));
 }
 
 }
@@ -634,7 +634,7 @@ char query[200];
 sprintf(query,"INSERT INTO friend (yonghu, friends)VALUES('%s', '%s');",temp->user_id,temp->to_id);
 int t = mysql_real_query(mysql,query,strlen(query));
 if(t){
-    printf("Falied to query:%s\n",mysql_error(mysql));}
+printf("Falied to query:%s\n",mysql_error(mysql));}
 return 1;
 }
 
@@ -666,6 +666,8 @@ while((row=mysql_fetch_row(res)))
         {
             printf("%d\n",flag);
             flag = flag+1;
+            system("clear -l");
+            printf("flag::%d\n",flag);
             if(flag == 2)
             {
                 break;

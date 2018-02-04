@@ -20,7 +20,7 @@ void m_connect(int sock_fd,struct sockaddr_in *ser);
 int create_sock();
 void  m_write(int sock_fd,struct chat *temp);
 void leg_insert();//注册界面
-void login_inset();//登陆界面
+void loin_inset();//登陆界面
 int juge_login(int conn_fd,struct chat *temp);//客户端发送id和密码给服务端
 void maininsert();//主界面菜单
 int user_log(struct chat *temp,int conn_fd);//客户端发送id和密码给服务端*/
